@@ -48,24 +48,29 @@ Sul server:
 
 2. Struttura
 ```
-src/main/java/com/example/app
+src/main/java/com/backend/app
 ├── config
-│   ├── SecurityConfig.java
-│   └── JwtConfig.java
-├── auth
+│   └── CorsConfig.java
+├── controller
 │   ├── AuthController.java
+│   └── UserConfig.java
+├── dto
+│   ├── LoginRequest.java
+│   ├── LoginResponse.java
+│   ├── SignupRequest.java
+│   └── UserResponse.java
+├── model
+│   └── User.java
+├── repository
+│   └── UserRepository.java
+├── security
+│   ├── JwtAuthenticationFilter.java
+│   └── SecurityConfig.java
+├── service
 │   ├── AuthService.java
-│   └── JwtService.java
-├── user
-│   ├── User.java
-│   ├── UserRepository.java
 │   └── UserService.java
-├── file
-│   ├── FileController.java
-│   ├── FileService.java
-│   └── FileMetadata.java
-├── api
-│   └── GenericController.java
+├── util
+│   └── JwtUtil.java
 └── Application.java
 
 ```

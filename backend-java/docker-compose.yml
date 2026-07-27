@@ -1,31 +1,35 @@
-version: '3.9'
+version: "3.9"
 
 services:
-  backend:
-    image: backend-java:latest
+  backend-java:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: springboot
     ports:
       - "8080:8080"
+    env_file:
+      - .env.example
     depends_on:
-      - db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydb
-      SPRING_DATASOURCE_USERNAME: myuser
-      SPRING_DATASOURCE_PASSWORD: mypassword
+      - postgres
+    networks:
+      - backend-net
 
-  db:
-    image: postgres:17
-    restart: always
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+  postgres:
+    image: postgres:16
+    container_name: postgres
     ports:
       - "5432:5432"
+    env_file:
+      - .env.example
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend-net
 
 volumes:
-  db-data:
+  postgres-data:
+
+networks:
+  ezmanager-net:
+    driver: bridge

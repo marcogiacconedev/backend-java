@@ -31,5 +31,5 @@ volumes:
   postgres-data:
 
 networks:
-  ezmanager-net:
+  backend-net:
     driver: bridge
